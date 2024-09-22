@@ -125,7 +125,7 @@ function ShoppingHome() {
             key={index}
             className={`${
               index === currentSlide ? "opacity-100" : "opacity-0"
-            } absolute top-0 left-0 w-full h-full object-contain transition-opacity duration-1000`} // Updated to object-contain
+            } absolute top-0 left-0 w-full h-full object-contain md:object-cover transition-opacity duration-1000`} // Use object-contain for mobile and object-cover for desktop
             alt={`Banner ${index + 1}`} // Added alt text for accessibility
           />
         ))}
