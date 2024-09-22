@@ -118,23 +118,22 @@ function ShoppingHome() {
 
   return (
     <div className="flex flex-col min-h-screen">
-      <div className="relative w-full h-[600px] overflow-hidden">
+      <div className="relative w-full h-[400px] md:h-[600px] overflow-hidden">
         {[bannerOne, bannerTwo, bannerThree].map((banner, index) => (
           <img
             src={banner}
             key={index}
             className={`${
               index === currentSlide ? "opacity-100" : "opacity-0"
-            } absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-1000`}
+            } absolute top-0 left-0 w-full h-full object-contain transition-opacity duration-1000`} // Updated to object-contain
+            alt={`Banner ${index + 1}`} // Added alt text for accessibility
           />
         ))}
         <Button
           variant="outline"
           size="icon"
           onClick={() =>
-            setCurrentSlide(
-              (prevSlide) => (prevSlide - 1 + 3) % 3
-            )
+            setCurrentSlide((prevSlide) => (prevSlide - 1 + 3) % 3)
           }
           className="absolute top-1/2 left-4 transform -translate-y-1/2 bg-white/80"
         >
@@ -144,9 +143,7 @@ function ShoppingHome() {
           variant="outline"
           size="icon"
           onClick={() =>
-            setCurrentSlide(
-              (prevSlide) => (prevSlide + 1) % 3
-            )
+            setCurrentSlide((prevSlide) => (prevSlide + 1) % 3)
           }
           className="absolute top-1/2 right-4 transform -translate-y-1/2 bg-white/80"
         >
@@ -165,6 +162,7 @@ function ShoppingHome() {
                   handleNavigateToListingPage(categoryItem, "category")
                 }
                 className="cursor-pointer hover:shadow-lg transition-shadow"
+                key={categoryItem.id}
               >
                 <CardContent className="flex flex-col items-center justify-center p-6">
                   <categoryItem.icon className="w-12 h-12 mb-4 text-primary" />
@@ -184,6 +182,7 @@ function ShoppingHome() {
               <Card
                 onClick={() => handleNavigateToListingPage(brandItem, "brand")}
                 className="cursor-pointer hover:shadow-lg transition-shadow"
+                key={brandItem.id}
               >
                 <CardContent className="flex flex-col items-center justify-center p-6">
                   <brandItem.icon className="w-12 h-12 mb-4 text-primary" />
